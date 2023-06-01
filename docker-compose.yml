@@ -35,6 +35,7 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
       - PROJECT_NAME=${PROJECT_NAME}
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
     depends_on:
       db:
         condition: service_healthy

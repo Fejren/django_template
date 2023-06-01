@@ -7,7 +7,8 @@ RUN apk add --update --no-cache postgresql-client jpeg-dev
 RUN apk add --update --no-cache --virtual .tmp-build-deps \
     gcc libc-dev libffi-dev linux-headers postgresql-dev musl-dev zlib zlib-dev
 
-WORKDIR /app/${PROJECT_NAME}
+ARG PROJECT_NAME
+WORKDIR /app/$PROJECT_NAME
 
 ADD ./requirements.txt requirements.txt
 RUN pip install -r requirements.txt --no-cache-dir
@@ -20,4 +21,4 @@ RUN chown -R user:user /vol/
 RUN chmod -R 755 /vol/web
 USER user
 
-EXPOSE 8000
+EXPOSE 80
