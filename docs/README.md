@@ -2,9 +2,9 @@
 
 ### Getting Started
 ```
-django-admin startproject --template=https://github.com/Fejren/django-template/archive/master.zip -e "ini,yml,conf,json" site_name
+django-admin startproject --template=https://github.com/Fejren/django_template/archive/master.zip -e "ini,yml,conf,json" site_name
 ```
-#### Run the project:
+### Development version:
 ```
 $ make up
 ```
@@ -12,5 +12,19 @@ $ make up
 or
 
 ```
-$ docker-compose up
+$ docker compose up
 ```
+In the development version, the application runs on port 8000 \
+http://localhost:8000/
+### Production version:
+```
+$ make prod
+```
+
+or
+
+```
+$ docker compose -f docker-compose.prod.yml up --build
+```
+In the production version, the application runs on port 80 \
+http://localhost/
