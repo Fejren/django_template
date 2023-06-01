@@ -4,6 +4,9 @@
 ```
 django-admin startproject --template=https://github.com/Fejren/django_template/archive/master.zip -e "ini,yml,conf,json" site_name
 ```
+
+#### Then rename the changeme folders to the name of your project.
+
 ### Development version:
 ```
 $ make up
