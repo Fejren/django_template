@@ -14,36 +14,28 @@ services:
       interval: 1s
       timeout: 1s
       retries: 10
-  nginx:
-    depends_on:
-      - backend
-    restart: always
-    build:
-      dockerfile: Dockerfile
-      context: ./nginx
-    ports:
-      - "80:80"
   backend:
     env_file:
       - .env
     build:
       context: ./${PROJECT_NAME}
-      dockerfile: ../docker/development/Dockerfile.backend
+      dockerfile: ../docker/production/Dockerfile.backend
       args:
         - PROJECT_NAME=${PROJECT_NAME}
     ports:
-      - "8000:8000"
+      - "80:80"
     volumes:
       - ./${PROJECT_NAME}:/app/${PROJECT_NAME}
     command: >
       sh -c "python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8000"
+             python manage.py runserver 0.0.0.0:80"
     environment:
       - DB_HOST=${DB_HOST}
       - DB_NAME=${DB_NAME}
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
       - PROJECT_NAME=${PROJECT_NAME}
+      - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
     depends_on:
       db:
         condition: service_healthy

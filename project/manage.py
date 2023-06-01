@@ -3,10 +3,12 @@
 import os
 import sys
 
+# Get project name
+PROJECT_NAME = os.environ.get('PROJECT_NAME')
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', f'{PROJECT_NAME}.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
