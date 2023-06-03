@@ -11,12 +11,16 @@ build:
 	docker compose build
 
 admin:
-	docker compose run backend python manage.py createsuperuser
+	docker compose run --rm backend python manage.py createsuperuser
 
 migrations:
-	docker compose run backend python manage.py makemigrations
+	docker compose run --rm backend python manage.py makemigrations
 
 migrate:
-	docker compose run backend python manage.py migrate
+	docker compose run --rm backend python manage.py migrate
+
+test:
+	docker compose run --rm backend python manage.py test
+
 prod:
 	docker compose -f docker-compose.prod.yml up --build
